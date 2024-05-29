@@ -1,0 +1,44 @@
+name: Mod Bot
+
+on:
+  pull_request_comment:
+    types:
+      - created
+      - edited
+
+defaults:
+  run:
+    working-directory: bot
+
+jobs:
+  bot:
+    name: Run the Bot & Command
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Setup pnpm
+        run: npm i -g pnpm
+
+      - name: Setup Rustup
+        run: rustup toolchain install stable
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Run napi build
+        run: pnpm napi build
+
+      - name: Run bot
+        run: node .
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CTX: ${{ toJson(github) }}
