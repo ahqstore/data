@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: bot
+    working-directory: src
 
 jobs:
   bot:
