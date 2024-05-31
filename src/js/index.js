@@ -1,6 +1,6 @@
 (async () => {
   const { Octokit } = await import("octokit");
-  const data = require("./bot.node");
+  const data = require("../bot.node");
 
   console.log(data);
 
