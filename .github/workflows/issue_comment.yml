@@ -48,3 +48,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CTX: ${{ toJson(github) }}
+
+      - name: Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: AHQ Store Bot
+          author_email: ahqsecret@gmail.com
+          commit: --force
+          message: Robot Action

@@ -1,0 +1,28 @@
+name: Refresh Database Data
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 * * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        run: rustup toolchain install nightly
+
+      - name: Build
+        run: cargo run --release --manifest-path ./build/Cargo.toml
+
+      - name: Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: AHQ Store Bot
+          author_email: ahqsecret@gmail.com
+          commit: --force
+          message: "Automation: Refresh /db"
