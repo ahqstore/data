@@ -24,5 +24,4 @@ jobs:
         with:
           author_name: AHQ Store Bot
           author_email: ahqsecret@gmail.com
-          commit: --force
           message: "Automation: Refresh /db"
