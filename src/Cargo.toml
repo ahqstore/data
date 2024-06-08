@@ -8,6 +8,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 ahqstore-types = "2.0.2"
+bcrypt = "0.15.1"
 # Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
 napi = { version = "2.16.6", default-features = false, features = ["napi4"] }
 napi-derive = "2.16.5"

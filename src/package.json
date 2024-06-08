@@ -32,7 +32,6 @@
     "version": "napi version"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "octokit": "^4.0.2",
     "yaml": "^2.4.2"
   }
