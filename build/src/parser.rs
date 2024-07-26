@@ -119,16 +119,19 @@ pub fn parser() {
     let app = app.unwrap();
 
     let data = fs::read_to_string(app.path()).unwrap();
-    let data: AHQStoreApplication = from_str(&data).unwrap();
-
-    println!(
-      "{}. 🔎 {} -> {} ({})",
-      uid + 1,
-      &data.authorId,
-      &data.appId,
-      &data.appDisplayName
-    );
-    map.add(data);
+    if let Ok(data) = from_str::<AHQStoreApplication>(&data) {
+      println!(
+        "{}. 🔎 {} -> {} ({})",
+        uid + 1,
+        &data.authorId,
+        &data.appId,
+        &data.appDisplayName
+      );
+      map.add(data);
+    } else {
+      println!("{}. ❌ Removing {}", uid + 1, app.file_name().to_string_lossy());
+      let _ = fs::remove_file(app.path());
+    }
   }
   map.finish();
   println!("✅ Done!");
