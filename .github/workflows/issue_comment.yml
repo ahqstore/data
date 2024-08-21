@@ -6,6 +6,10 @@ on:
       - created
       - edited
 
+concurrency:
+  cancel-in-progress: false
+  group: ahqstore_mod_bot
+
 defaults:
   run:
     working-directory: src
